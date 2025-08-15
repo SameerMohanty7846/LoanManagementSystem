@@ -1,36 +1,46 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+
 const Login = () => {
-  const[formData,setFormData]=useState({
-     email:'',
-     password:''
-  })
+  const [formData, setFormData] = useState({
+    email: '',
+    password: ''
+  });
+  const navigate = useNavigate();
 
-  const handleChange=(e)=>{
-    const{name,value}=e.target;
-    setFormData((prev)=>({
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
       ...prev,
-      [name]:value
-    }
+      [name]: value
+    }));
+  };
 
-    ))
-  }
-  const handleSubmit=(e)=>{
+  const handleSubmit = (e) => {
     e.preventDefault();
 
-   //axios.post('url',formData)
+    // Check email and set role
+    if (formData.email === 'admin@gmail.com') {
+      localStorage.setItem('role', 'admin');
+      localStorage.setItem('isAuthenticated', 'true');
+      navigate('/admin/dashboard'); // Redirect to admin dashboard
+    } else if (formData.email === 'user@gmail.com') {
+      localStorage.setItem('role', 'user');
+      localStorage.setItem('isAuthenticated', 'true');
+      navigate('/user/dashboard'); // Redirect to user dashboard
+    } else {
+      // Handle other cases or show error
+      alert('Invalid credentials');
+      return;
+    }
 
-    console.log(formData)
+    console.log(formData);
     setFormData({
-      email:'',
-      password:''
-
-    })//reset
-  }
-
-
-
+      email: '',
+      password: ''
+    });
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-500 to-purple-600 p-4">
@@ -101,7 +111,7 @@ const Login = () => {
           <div className="mt-6 text-center">
             <p className="text-sm text-gray-600">
               Don't have an account?{' '}
-              <Link to={'/signup'} href="#" className="font-medium text-purple-600 hover:text-purple-500">
+              <Link to={'/signup'} className="font-medium text-purple-600 hover:text-purple-500">
                 Sign up
               </Link>
             </p>
@@ -115,7 +125,6 @@ const Login = () => {
             alt="Login illustration"
             className="w-full h-full object-cover"
           />
-          
         </div>
       </div>
     </div>

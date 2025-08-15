@@ -1,7 +1,49 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 const SignUp = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    password: ''
+  });
+  const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // Check email and set role
+    if (formData.email === 'admin@gmail.com') {
+      localStorage.setItem('role', 'admin');
+      localStorage.setItem('isAuthenticated', 'true');
+      localStorage.setItem('userName', formData.name); // Store user's name
+      navigate('/admin/dashboard');
+    } else if (formData.email === 'user@gmail.com') {
+      localStorage.setItem('role', 'user');
+      localStorage.setItem('isAuthenticated', 'true');
+      localStorage.setItem('userName', formData.name); // Store user's name
+      navigate('/user/dashboard');
+    } else {
+      // For other emails, default to user role
+      localStorage.setItem('role', 'user');
+      localStorage.setItem('isAuthenticated', 'true');
+      localStorage.setItem('userName', formData.name);
+      navigate('/user/dashboard');
+    }
+
+    console.log('SignUp form submitted:', formData);
+  };
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-500 to-purple-600 p-4">
       {/* SignUp Card */}
@@ -11,15 +53,18 @@ const SignUp = () => {
           <h1 className="text-3xl font-bold text-gray-800 mb-2">Create Account</h1>
           <p className="text-gray-600 mb-8">Join us to get started</p>
 
-          <form className="space-y-5">
+          <form className="space-y-5" onSubmit={handleSubmit}>
             {/* Name Field */}
             <div>
               <input
                 id="name"
+                name="name"
                 type="text"
                 placeholder="Full Name"
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
                 required
+                value={formData.name}
+                onChange={handleChange}
               />
             </div>
 
@@ -27,10 +72,13 @@ const SignUp = () => {
             <div>
               <input
                 id="email"
+                name="email"
                 type="email"
                 placeholder="Email Address"
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
                 required
+                value={formData.email}
+                onChange={handleChange}
               />
             </div>
 
@@ -38,10 +86,13 @@ const SignUp = () => {
             <div>
               <input
                 id="phone"
+                name="phone"
                 type="tel"
                 placeholder="Phone Number"
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
                 required
+                value={formData.phone}
+                onChange={handleChange}
               />
             </div>
 
@@ -49,10 +100,13 @@ const SignUp = () => {
             <div>
               <input
                 id="password"
+                name="password"
                 type="password"
                 placeholder="Create a password (Min. 8 characters)"
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
                 required
+                value={formData.password}
+                onChange={handleChange}
               />
             </div>
 
