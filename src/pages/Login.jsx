@@ -43,11 +43,11 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-500 to-purple-600 p-4">
-      {/* Login Card */}
-      <div className="flex flex-col md:flex-row w-full max-w-4xl bg-white rounded-xl shadow-2xl overflow-hidden">
+    <div className="fixed inset-0 bg-gradient-to-br from-blue-500 to-purple-600 p-4 flex items-center justify-center">
+      {/* Login Card - now using full height on mobile and constrained on larger screens */}
+      <div className="flex flex-col md:flex-row w-full h-full md:h-auto md:max-h-[90vh] md:max-w-4xl bg-white rounded-none md:rounded-xl shadow-2xl overflow-hidden">
         {/* Left Side - Form */}
-        <div className="w-full md:w-1/2 p-8 sm:p-12">
+        <div className="w-full md:w-1/2 p-8 sm:p-12 overflow-y-auto">
           <h1 className="text-3xl font-bold text-gray-800 mb-2">Welcome Back</h1>
           <p className="text-gray-600 mb-8">Sign in to access your account</p>
 
