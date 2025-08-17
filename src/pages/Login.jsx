@@ -24,11 +24,11 @@ const Login = () => {
     if (formData.email === 'admin@gmail.com') {
       localStorage.setItem('role', 'admin');
       localStorage.setItem('isAuthenticated', 'true');
-      navigate('/admin/dashboard'); // Redirect to admin dashboard
+      navigate('/admin/admindashboard'); // Redirect to admin dashboard
     } else if (formData.email === 'user@gmail.com') {
       localStorage.setItem('role', 'user');
       localStorage.setItem('isAuthenticated', 'true');
-      navigate('/user/dashboard'); // Redirect to user dashboard
+      navigate('/user/userdashboard'); // Redirect to user dashboard
     } else {
       // Handle other cases or show error
       alert('Invalid credentials');

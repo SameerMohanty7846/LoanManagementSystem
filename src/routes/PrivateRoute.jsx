@@ -6,9 +6,12 @@ import { Navigate } from 'react-router-dom';
 const PrivateRoute = ({ role, children }) => {
     const userRole = localStorage.getItem('role');
     if (!userRole) {
+        alert('Please login to access this page.');
         return <Navigate to='/login' />
     }
     if (userRole != role) {
+        alert('Please login to access this page.');
+
         return <Navigate to='/login' />
     }
 
