@@ -23,11 +23,9 @@ const Login = () => {
     // Check email and set role
     if (formData.email === 'admin@gmail.com') {
       localStorage.setItem('role', 'admin');
-      localStorage.setItem('isAuthenticated', 'true');
       navigate('/admin/admindashboard'); // Redirect to admin dashboard
     } else if (formData.email === 'user@gmail.com') {
       localStorage.setItem('role', 'user');
-      localStorage.setItem('isAuthenticated', 'true');
       navigate('/user/userdashboard'); // Redirect to user dashboard
     } else {
       // Handle other cases or show error
