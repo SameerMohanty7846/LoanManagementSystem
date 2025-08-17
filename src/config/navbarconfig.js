@@ -1,14 +1,13 @@
 export const navbarMenuItems = {
   admin: [
-    { path: '/admin/dashboard', label: 'Admin Dashboard' },
-    { path: '/admin/add-new', label: 'Admin Add New' },
-    { path: '/admin/permissions', label: 'Admin Permissions' },
-    { path: '/admin/reviews', label: 'Admin Reviews' }
+    { path: '/admin/view-and-update-loans', label: 'Manage Loans' },
+    { path: '/admin/view-loan-applications', label: 'Loan Applications' },
+    { path: '/admin/admindashboard', label: 'Admin Dashboard' }
   ],
   user: [
-    { path: '/user/dashboard', label: 'User Dashboard' },
-    { path: '/user/add-new', label: 'User Add New' },
-    { path: '/user/permissions', label: 'User Permissions' },
-    { path: '/user/reviews', label: 'User Reviews' }
+    { path: '/user/loans', label: 'Available Loans' },
+    { path: '/user/loanhistory', label: 'Loan History' },
+    { path: '/user/emicalculator', label: 'EMI Calculator' },
+    { path: '/user/userdashboard', label: 'User Dashboard' }
   ]
 };

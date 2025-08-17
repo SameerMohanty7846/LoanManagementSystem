@@ -3,20 +3,21 @@ import { Link, useLocation } from 'react-router-dom';
 
 export const navbarMenuItems = {
   admin: [
-    { path: '/admin/dashboard', label: 'Admin Dashboard', icon: 'M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6' },
-    { path: '/admin/add-new', label: 'Add New', icon: 'M12 6v6m0 0v6m0-6h6m-6 0H6' },
-    { path: '/admin/permissions', label: 'Permissions', icon: 'M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z' },
-    { path: '/admin/reviews', label: 'Reviews', icon: 'M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z' }
+    { path: '/admin/admindashboard', label: 'Admin Dashboard' },
+    { path: '/admin/view-and-update-loans', label: 'Manage Loans' },
+    { path: '/admin/view-loan-applications', label: 'Loan Applications' }
   ],
   user: [
-    { path: '/user/dashboard', label: 'Dashboard', icon: 'M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6' },
-    { path: '/user/add-new', label: 'Add New', icon: 'M12 6v6m0 0v6m0-6h6m-6 0H6' },
-    { path: '/user/permissions', label: 'Permissions', icon: 'M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z' },
-    { path: '/user/reviews', label: 'Reviews', icon: 'M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z' }
+    { path: '/user/userdashboard', label: 'User Dashboard' },
+
+    { path: '/user/loans', label: 'Available Loans' },
+    { path: '/user/loanhistory', label: 'Loan History' },
+    { path: '/user/emicalculator', label: 'EMI Calculator' },
   ]
 };
 
-const CommonSidebar = ({ userType = 'user' }) => {
+
+const CommonSidebar = ({ userType }) => {
   const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const menuItems = navbarMenuItems[userType] || navbarMenuItems.user;
@@ -69,18 +70,16 @@ const CommonSidebar = ({ userType = 'user' }) => {
                 <Link
                   key={item.path}
                   to={item.path}
-                  className={`group flex items-center px-2 py-3 text-sm font-medium rounded-md ${
-                    location.pathname === item.path
+                  className={`group flex items-center px-2 py-3 text-sm font-medium rounded-md ${location.pathname === item.path
                       ? 'bg-purple-50 text-purple-700'
                       : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
-                  }`}
+                    }`}
                 >
                   <svg
-                    className={`mr-3 h-5 w-5 ${
-                      location.pathname === item.path
+                    className={`mr-3 h-5 w-5 ${location.pathname === item.path
                         ? 'text-purple-500'
                         : 'text-gray-400 group-hover:text-gray-500'
-                    }`}
+                      }`}
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
@@ -98,7 +97,7 @@ const CommonSidebar = ({ userType = 'user' }) => {
 
       {/* Overlay for mobile */}
       {mobileMenuOpen && (
-        <div 
+        <div
           className="sm:hidden fixed inset-0 bg-gray-600 bg-opacity-50 z-30"
           onClick={() => setMobileMenuOpen(false)}
         ></div>
