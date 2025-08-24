@@ -12,6 +12,8 @@ import ViewLoanApplications from './components/ViewLoanApplications'
 import PrivateRoute from './routes/PrivateRoute'
 import UserDashboard from './components/UserDashboard'
 import AdminDashboard from './components/AdminDashboard'
+import Offers from './components/Offers'
+import ManageOffers from './components/ManageOffers'
 
 const App = () => {
   return (
@@ -20,18 +22,22 @@ const App = () => {
 
         {/* User Routes  */}
         <Route element={<PrivateRoute role={'user'} children={<MainLayout />} ></PrivateRoute>}>
+          <Route path='/user/userdashboard' element={<UserDashboard />} />
           <Route path='/user/loans' element={<ViewLoans />} />
           <Route path='/user/loanhistory' element={<LoanHistory />} />
           <Route path='/user/emicalculator' element={<EmiCalculator />} />
-          <Route path='/user/userdashboard' element={<UserDashboard />} />
+          <Route path='/user/offers' element={<Offers />} />
+
 
         </Route>
 
         {/* Admin Routes  */}
         <Route element={<PrivateRoute role={'admin'} children={<MainLayout />} ></PrivateRoute>}>
+          <Route path='/admin/admindashboard' element={<AdminDashboard />} />
           <Route path='/admin/view-and-update-loans' element={<ViewAndUpdateLoans />} />
           <Route path='/admin/view-loan-applications' element={<ViewLoanApplications />} />
-          <Route path='/admin/admindashboard' element={<AdminDashboard />} />
+          <Route path='/admin/manage-offers' element={<ManageOffers />} />
+
 
         </Route>
 
