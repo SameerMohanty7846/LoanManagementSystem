@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import logo from "../assets/LoanPe Logo Design (5).png"; // go up 2 levels to src/assets
 
 export const headerMenuItems = {
   admin: [
@@ -81,10 +82,12 @@ const Header = () => {
 
           {/* Logo - Centered on mobile, normal position on desktop */}
           <div className="flex flex-shrink-0 md:ml-0 mx-auto md:mx-0">
-            <Link to="/">
-              <span className="text-xl font-bold bg-gradient-to-r from-purple-600 to-blue-500 bg-clip-text text-transparent">
-                YourLogo
-              </span>
+            <Link to="/" className="flex items-center">
+              <img
+                src="/assets/logo.png" // place your logo in public/assets/logo.png
+                alt="LoanPe Logo"
+                className="h-10 w-auto"
+              />
             </Link>
           </div>
 
@@ -108,13 +111,15 @@ const Header = () => {
           </nav>
 
           {/* Right side - Empty div to maintain layout balance */}
-          <div className="flex items-center">
-            {/* This empty div maintains the layout balance without any icons */}
-          </div>
+          <div className="flex items-center"></div>
         </div>
 
         {/* Mobile menu, show/hide based on menu state */}
-        <div className={`md:hidden ${mobileMenuOpen ? 'block' : 'hidden'} transition-all duration-300 ease-in-out`}>
+        <div
+          className={`md:hidden ${
+            mobileMenuOpen ? 'block' : 'hidden'
+          } transition-all duration-300 ease-in-out`}
+        >
           <div className="pt-2 pb-3 space-y-1 bg-white shadow-lg rounded-b-lg border-t border-gray-100">
             {menuItems.map((item) => (
               <Link
@@ -130,7 +135,7 @@ const Header = () => {
                 {item.label}
               </Link>
             ))}
-            
+
             {/* Logout option in mobile menu */}
             <div className="border-t border-gray-200 mt-2 pt-2">
               <button
