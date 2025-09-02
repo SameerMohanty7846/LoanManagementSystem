@@ -84,9 +84,9 @@ const Header = () => {
           <div className="flex flex-shrink-0 md:ml-0 mx-auto md:mx-0">
             <Link to="/" className="flex items-center">
               <img
-                src="/assets/logo.png" // place your logo in public/assets/logo.png
+                src={logo}
                 alt="LoanPe Logo"
-                className="h-10 w-auto"
+                className="h-16 w-auto md:h-20 lg:h-24 object-contain"
               />
             </Link>
           </div>
@@ -98,11 +98,10 @@ const Header = () => {
                 <Link
                   key={item.path}
                   to={item.path}
-                  className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition-colors duration-200 ${
-                    location.pathname === item.path
+                  className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition-colors duration-200 ${location.pathname === item.path
                       ? 'border-purple-500 text-gray-900'
                       : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-                  }`}
+                    }`}
                 >
                   {item.label}
                 </Link>
@@ -116,20 +115,18 @@ const Header = () => {
 
         {/* Mobile menu, show/hide based on menu state */}
         <div
-          className={`md:hidden ${
-            mobileMenuOpen ? 'block' : 'hidden'
-          } transition-all duration-300 ease-in-out`}
+          className={`md:hidden ${mobileMenuOpen ? 'block' : 'hidden'
+            } transition-all duration-300 ease-in-out`}
         >
           <div className="pt-2 pb-3 space-y-1 bg-white shadow-lg rounded-b-lg border-t border-gray-100">
             {menuItems.map((item) => (
               <Link
                 key={item.path}
                 to={item.path}
-                className={`block pl-3 pr-4 py-3 border-l-4 text-base font-medium transition-colors duration-200 ${
-                  location.pathname === item.path
+                className={`block pl-3 pr-4 py-3 border-l-4 text-base font-medium transition-colors duration-200 ${location.pathname === item.path
                     ? 'border-purple-500 bg-purple-50 text-purple-700'
                     : 'border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800'
-                }`}
+                  }`}
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {item.label}
